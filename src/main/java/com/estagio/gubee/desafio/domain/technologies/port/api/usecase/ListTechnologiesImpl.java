@@ -4,15 +4,15 @@ import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
 import com.estagio.gubee.desafio.domain.technologies.port.api.ListTechnologies;
 import com.estagio.gubee.desafio.domain.technologies.port.spi.TechnologiesRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
 public class ListTechnologiesImpl implements ListTechnologies {
 
-    @Autowired
-    private TechnologiesRepository tec;
+    private final TechnologiesRepository tec;
 
     @Override
     public List<Technologies> findAll() {

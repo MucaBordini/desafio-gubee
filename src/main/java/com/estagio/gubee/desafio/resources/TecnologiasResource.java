@@ -5,6 +5,7 @@ import com.estagio.gubee.desafio.domain.technologies.port.api.ListTechnologies;
 import com.estagio.gubee.desafio.domain.technologies.port.api.ListTechnologiesWithFilters;
 import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
 import com.estagio.gubee.desafio.shared.URL;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +18,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "tecnologias")
+@RequiredArgsConstructor
 public class TecnologiasResource {
 
-    @Autowired
-    private ListTechnologies listTechnologies;
+    private final ListTechnologies listTechnologies;
 
-    @Autowired
-    private ListTechnologiesWithFilters listTechnologiesWithFilters;
+    private final ListTechnologiesWithFilters listTechnologiesWithFilters;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<TechnologiesDTO>> findAll() {

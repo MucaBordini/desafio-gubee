@@ -5,14 +5,15 @@ import com.estagio.gubee.desafio.domain.technologies.port.api.ListTechnologiesWi
 import com.estagio.gubee.desafio.domain.technologies.port.spi.TechnologiesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
 public class ListTechnologiesWithFiltersImpl implements ListTechnologiesWithFilters {
 
-    @Autowired
-    private TechnologiesRepository tec;
+    private final TechnologiesRepository tec;
 
     @Override
     public List<Technologies> fullSearch(String stack, String product) {

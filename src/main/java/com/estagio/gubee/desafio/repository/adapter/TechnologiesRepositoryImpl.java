@@ -12,8 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TechnologiesRepositoryImpl implements TechnologiesRepository {
 
-    @Autowired
-    private MongoTechnologiesRepository mongoTechnologiesRepository;
+    private final MongoTechnologiesRepository mongoTechnologiesRepository;
 
     @Override
     public List<Technologies> fullSearch(String stack, String product) {
