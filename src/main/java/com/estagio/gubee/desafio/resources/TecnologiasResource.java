@@ -1,9 +1,10 @@
 package com.estagio.gubee.desafio.resources;
 
-import com.estagio.gubee.desafio.dto.TecnologiasDTO;
-import com.estagio.gubee.desafio.services.TecnologiasService;
-import com.estagio.gubee.desafio.domain.Tecnologias;
-import com.estagio.gubee.desafio.util.URL;
+import com.estagio.gubee.desafio.api.dto.TechnologiesDTO;
+import com.estagio.gubee.desafio.domain.technologies.port.api.ListTechnologies;
+import com.estagio.gubee.desafio.domain.technologies.port.api.ListTechnologiesWithFilters;
+import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
+import com.estagio.gubee.desafio.shared.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,25 +20,29 @@ import java.util.stream.Collectors;
 public class TecnologiasResource {
 
     @Autowired
-    private TecnologiasService service;
+    private ListTechnologies listTechnologies;
+
+    @Autowired
+    private ListTechnologiesWithFilters listTechnologiesWithFilters;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<TecnologiasDTO>> findAll() {
-        List<Tecnologias> list = service.findAll();
-        List<TecnologiasDTO> listDto = list.stream().map(x -> new TecnologiasDTO(x)).collect(Collectors.toList());
+    public ResponseEntity<List<TechnologiesDTO>> findAll() {
+        List<Technologies> list = listTechnologies.findAll();
+        List<TechnologiesDTO> listDto = list.stream().map(x -> new TechnologiesDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
 
     @RequestMapping(value = "/fullsearch", method = RequestMethod.GET)
-    public ResponseEntity<List<Tecnologias>> fullSearch(
+    public ResponseEntity<List<TechnologiesDTO>> fullSearch(
             @RequestParam(value = "stack", defaultValue = "") String stack,
             @RequestParam(value = "product", defaultValue = "") String product) {
 
         stack = URL.decodeParam(stack);
         product = URL.decodeParam(product);
 
-        List<Tecnologias> list = service.fullSearch(stack, product);
-        return ResponseEntity.ok().body(list);
+        List<Technologies> list = listTechnologiesWithFilters.fullSearch(stack, product);
+        List<TechnologiesDTO> listDto = list.stream().map(x -> new TechnologiesDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
 
     }
 

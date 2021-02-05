@@ -1,30 +1,24 @@
-package com.estagio.gubee.desafio.domain;
+package com.estagio.gubee.desafio.api.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Document
-public class Tecnologias {
+public class TechnologiesDTO {
 
-    @Id
     private String id;
     private String productName;
     private String description;
-
     private List<String> targetMarket = new ArrayList<>();
-
     private List<String> stack = new ArrayList<>();
 
-    public Tecnologias(String id, String productName, String description, List<String> targetMarket, List<String> stack) {
-        this.id = id;
-        this.productName = productName;
-        this.description = description;
-        this.targetMarket = targetMarket;
-        this.stack = stack;
+    public TechnologiesDTO(Technologies obj) {
+        this.id = obj.getId();
+        this.productName = obj.getProductName();
+        this.description = obj.getDescription();
+        this.targetMarket = obj.getTargetMarket();
+        this.stack = obj.getStack();
     }
 
     public String getId() {

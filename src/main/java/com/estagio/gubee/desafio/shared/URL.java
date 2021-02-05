@@ -1,4 +1,4 @@
-package com.estagio.gubee.desafio.util;
+package com.estagio.gubee.desafio.shared;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
