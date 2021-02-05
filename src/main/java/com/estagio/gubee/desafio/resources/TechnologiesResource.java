@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "tecnologias")
+@RequestMapping(value = "technologies")
 @RequiredArgsConstructor
-public class TecnologiasResource {
+public class TechnologiesResource {
 
     private final ListTechnologies listTechnologies;
 
@@ -28,7 +28,7 @@ public class TecnologiasResource {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<TechnologiesDTO>> findAll() {
         List<Technologies> list = listTechnologies.findAll();
-        List<TechnologiesDTO> listDto = list.stream().map(x -> new TechnologiesDTO(x)).collect(Collectors.toList());
+        List<TechnologiesDTO> listDto = list.stream().map(TechnologiesDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
 
@@ -41,7 +41,7 @@ public class TecnologiasResource {
         product = URL.decodeParam(product);
 
         List<Technologies> list = listTechnologiesWithFilters.fullSearch(stack, product);
-        List<TechnologiesDTO> listDto = list.stream().map(x -> new TechnologiesDTO(x)).collect(Collectors.toList());
+        List<TechnologiesDTO> listDto = list.stream().map(TechnologiesDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
 
     }

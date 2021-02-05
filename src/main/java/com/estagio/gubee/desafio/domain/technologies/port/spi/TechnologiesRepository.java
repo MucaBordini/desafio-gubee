@@ -4,6 +4,7 @@ import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
 
 import java.util.List;
 
+
 public interface TechnologiesRepository {
 
     List<Technologies> fullSearch (String stack, String product);
