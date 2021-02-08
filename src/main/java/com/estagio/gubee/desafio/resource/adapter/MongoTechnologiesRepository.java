@@ -1,4 +1,4 @@
-package com.estagio.gubee.desafio.repository.adapter;
+package com.estagio.gubee.desafio.resource.adapter;
 
 import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
 import org.springframework.data.mongodb.repository.MongoRepository;

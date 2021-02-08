@@ -1,9 +1,8 @@
-package com.estagio.gubee.desafio.repository.adapter;
+package com.estagio.gubee.desafio.resource.adapter;
 
 import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
 import com.estagio.gubee.desafio.domain.technologies.port.spi.TechnologiesRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

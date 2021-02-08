@@ -6,7 +6,7 @@ import com.estagio.gubee.desafio.domain.technologies.port.api.ListTechnologiesWi
 import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
 import com.estagio.gubee.desafio.shared.URL;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +41,11 @@ public class TechnologiesResource {
         product = URL.decodeParam(product);
 
         List<Technologies> list = listTechnologiesWithFilters.fullSearch(stack, product);
+        if (list.size() == 0) {
+            return ResponseEntity.notFound().build();
+        }
         List<TechnologiesDTO> listDto = list.stream().map(TechnologiesDTO::new).collect(Collectors.toList());
+
         return ResponseEntity.ok().body(listDto);
 
     }
