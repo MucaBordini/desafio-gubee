@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface TechnologiesRepository {
 
-    List<Technologies> fullSearch (String stack, String product);
+    Technologies save (Technologies technology);
+
+    List<Technologies> fullSearch (String stack, String marketTarget);
 
     List<Technologies> findAll();
 

@@ -1,22 +1,19 @@
 package com.estagio.gubee.desafio.domain.technologies.port.api.usecase;
 
 import com.estagio.gubee.desafio.domain.technologies.model.Technologies;
-import com.estagio.gubee.desafio.domain.technologies.port.api.ListTechnologiesWithFilters;
+import com.estagio.gubee.desafio.domain.technologies.port.api.SaveTechnology;
 import com.estagio.gubee.desafio.domain.technologies.port.spi.TechnologiesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @RequiredArgsConstructor
-public class ListTechnologiesWithFiltersImpl implements ListTechnologiesWithFilters {
+public class SaveTechnologyImpl implements SaveTechnology {
 
     private final TechnologiesRepository tec;
 
     @Override
-    public List<Technologies> fullSearch(String stack, String marketTarget) {
-        return tec.fullSearch(stack, marketTarget);
+    public Technologies save(Technologies technology) {
+        return tec.save(technology);
     }
-
 }

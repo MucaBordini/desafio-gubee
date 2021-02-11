@@ -10,14 +10,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 public class ListTechnologiesWithFiltersTest {
 
     @Mock
@@ -61,7 +59,10 @@ public class ListTechnologiesWithFiltersTest {
 
         Mockito.when(listTech.fullSearch("2", "")).thenReturn((listTec));
 
-        assertEquals(listTec, listTech.fullSearch("2", ""));
+        var list = listTech.fullSearch("2", "");
+
+
+        assertEquals(listTec, list);
 
     }
 

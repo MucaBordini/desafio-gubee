@@ -14,8 +14,13 @@ public class TechnologiesRepositoryImpl implements TechnologiesRepository {
     private final MongoTechnologiesRepository mongoTechnologiesRepository;
 
     @Override
-    public List<Technologies> fullSearch(String stack, String product) {
-        return mongoTechnologiesRepository.fullSearch(stack, product);
+    public Technologies save(Technologies technology) {
+        return mongoTechnologiesRepository.save(technology);
+    }
+
+    @Override
+    public List<Technologies> fullSearch(String stack, String targetMarket) {
+        return mongoTechnologiesRepository.fullSearch(stack, targetMarket);
     }
 
     @Override

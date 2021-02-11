@@ -10,9 +10,11 @@ import java.util.List;
 @Repository
 public interface MongoTechnologiesRepository extends MongoRepository<Technologies, String> {
 
-    @Query("{ $and: [ { stack: {$regex: ?0, $options: 'i'} }, { 'productName': { $regex: ?1, $options: 'i' } } ] }")
-    List<Technologies> fullSearch(String stack, String product);
+    @Query("{ $and: [ { stack: {$regex: ?0, $options: 'i'} }, { 'targetMarket': { $regex: ?1, $options: 'i' } } ] }")
+    List<Technologies> fullSearch(String stack, String marketTarget);
 
     List<Technologies> findAll();
+
+    Technologies save(Technologies technology);
 
 }

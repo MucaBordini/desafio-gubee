@@ -8,24 +8,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 public class ListTechnologiesTest {
 
-    @Mock
-    private TechnologiesRepository listRepo;
+    private TechnologiesRepository listRepo = Mockito.mock(TechnologiesRepository.class);
 
-    private ListTechnologies listTech;
+    private ListTechnologies listTechUseCase;
 
     @BeforeEach
     void setUp() {
-        listTech = new ListTechnologiesImpl(listRepo);
+        listTechUseCase = new ListTechnologiesImpl(listRepo);
     }
 
     @Test
@@ -40,9 +37,11 @@ public class ListTechnologiesTest {
 
         listTec.add(tec1);
 
-        Mockito.when(listTech.findAll()).thenReturn((listTec));
+        Mockito.when(listRepo.findAll()).thenReturn((listTec));
 
-        assertEquals(listTec, listTech.findAll());
+        var list = listTechUseCase.findAll();
+
+        assertEquals(1, list.size());
     }
 
 }
